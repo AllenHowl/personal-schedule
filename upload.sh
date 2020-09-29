@@ -4,7 +4,7 @@ rm -rf target/personal-schedule-0.0.1-SNAPSHOT.jar
 
 ssh ali "rm -rf /data/springboot/personal-schedule-0.0.2-SNAPSHOT.jar"
 
-mvn clean package -Dmaven.test.skip=true
+mvn clean package -Dmaven.skip.test=true
 
 cd target/
 
