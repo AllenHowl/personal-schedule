@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@Slf4j
+@Slf4j(topic = "performance")
 public class TimerTask {
 
     @Autowired
@@ -24,6 +24,12 @@ public class TimerTask {
     public void init(){
         checkAoto();
         reportCurrent();
+        try {
+            int i = 1/0;
+        } catch (Exception e) {
+            log.error("something error, e = ",e);
+        }
+
     }
 
     /**
@@ -31,6 +37,7 @@ public class TimerTask {
      */
     @Scheduled(cron = "0 */2 * * 9 ?")
     public void checkAoto(){
+        log.info("schedule task start ....");
         aoTuGetCarMessageTask.taskProcess();
     }
 

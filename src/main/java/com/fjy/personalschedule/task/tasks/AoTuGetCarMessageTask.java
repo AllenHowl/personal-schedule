@@ -60,14 +60,14 @@ public class AoTuGetCarMessageTask implements TaskInc {
     private void parseResponse(String response) {
 
         if (StringUtils.isBlank(response)) {
-            System.out.println("get aotu message error");
+            log.error("get aotu message error, response = {}", response);
             return;
         }
 
         JSONObject jsonObject = JSON.parseObject(response);
 
         if (!ConstantField.aotuCode.equals(jsonObject.getString("resCode"))) {
-            System.out.println("get aotu message error , response = "+response);
+            log.error("get aotu message error , response = {} ", response);
             return;
         }
         JSONObject data = jsonObject.getJSONObject("data");
@@ -139,8 +139,7 @@ public class AoTuGetCarMessageTask implements TaskInc {
             // 标记请求时间
             ConstantField.latestTimeStamp = System.currentTimeMillis();
         }
-
-        System.out.println(result);
+        log.info("Ding send message , result = {} ", result);
 
     }
 
@@ -189,7 +188,7 @@ public class AoTuGetCarMessageTask implements TaskInc {
 
         String result = HttpPostUtils.postWithJson(ConstantField.dingUrl, null, JSON.toJSONString(dingMessage));
 
-        System.out.println(result);
+        log.info("Ding send message, poor price, result = {} ", result);
     }
 
     @Test
