@@ -1,6 +1,7 @@
 package com.fjy.personalschedule.task;
 
 
+import com.fjy.personalschedule.task.tasks.AFunTask;
 import com.fjy.personalschedule.task.tasks.AoTuGetCarMessageTask;
 import com.fjy.personalschedule.task.tasks.XinRenXinShiClockInTask;
 import lombok.extern.slf4j.Slf4j;
@@ -20,18 +21,18 @@ public class TimerTask {
     @Autowired
     private AoTuGetCarMessageTask aoTuGetCarMessageTask;
 
+    @Autowired
+    private AFunTask aFunTask;
+
     @PostConstruct
     public void init(){
-        checkAoto();
-        reportCurrent();
-        try {
-            int i = 1/0;
-        } catch (Exception e) {
-            log.error("something error, e = ",e);
-        }
+        /*checkAoto();
+        reportCurrent();*/
+        aFunCheckIn();
 
     }
 
+    //**************************************凹凸租车start**************************************
     /**
      * 检查是否有符合预期结果
      */
@@ -49,4 +50,13 @@ public class TimerTask {
         aoTuGetCarMessageTask.sendPoorMessage();
     }
 
+    //**************************************阿凡vpn签到start**************************************
+
+    /**
+     * 阿凡vpn签到
+     */
+    @Scheduled(cron = "*/10 * * * * ?")
+    public void aFunCheckIn(){
+        aFunTask.taskProcess();
+    }
 }

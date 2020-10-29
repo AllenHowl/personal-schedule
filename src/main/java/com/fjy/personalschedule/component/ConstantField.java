@@ -49,4 +49,9 @@ public class ConstantField {
      * 钉钉校验关键词
      */
     public static String dingKeyWorld = "哦呦～新消息来了呦～";
+
+    /**
+     * 阿凡vpn签到接口
+     */
+    public static String aFunUrl = "https://www.afunv.com/checkIn";
 }

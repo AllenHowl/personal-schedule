@@ -68,7 +68,7 @@ public class HttpPostUtils {
             httpResponse = httpClient.execute(httpPost);
             // 从响应对象中获取响应内容
             HttpEntity entity = httpResponse.getEntity();
-            result = EntityUtils.toString(entity);
+            result = EntityUtils.toString(entity,"utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
